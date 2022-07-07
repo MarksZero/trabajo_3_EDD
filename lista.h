@@ -10,11 +10,11 @@ int primero(Lista_cliente lista);
 
 int fin(Lista_cliente lista);
 
-void usuario(tipoDato cliente, int posicion, Lista_cliente &usuario);
+void usuario(datoUsuario cliente, int posicion, Lista_cliente &usuario);
 
 int siguiente(int p, Lista_cliente lista);
 
-void ingresar(tipoDato x, int p, Lista_cliente &lista);
+void ingresar(datoUsuario x, int p, Lista_cliente &lista);
 
 void imprime_lista(Lista_cliente lista);
 

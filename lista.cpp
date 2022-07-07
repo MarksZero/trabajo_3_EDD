@@ -8,7 +8,7 @@
 using namespace std;
 
 
-void usuario(tipoDato cliente, int posicion, Lista_cliente &usuario) {      //funcion para solicitar datos de clientes creados en un struct
+void usuario(datoUsuario cliente, int posicion, Lista_cliente &usuario) {      //funcion para solicitar datos de clientes creados en un struct
     cout << "ingrese los datos de clientes \n";
     char nombre[20];
     int id_number;
@@ -44,7 +44,7 @@ int siguiente(int p, Lista_cliente lista) {
     return p + 1;
 }
 
-void ingresar(tipoDato x, int p, Lista_cliente &lista) {
+void ingresar(datoUsuario x, int p, Lista_cliente &lista) {
     nodo1 *nuevo = new nodo1(x);
     nodo1 *aux = lista.primero;
     if (primero(lista) == p) {
@@ -58,7 +58,7 @@ void ingresar(tipoDato x, int p, Lista_cliente &lista) {
     }
 }
 
-tipoDato posicion(int p, Lista_cliente lista) {
+datoUsuario posicion(int p, Lista_cliente lista) {
     nodo1 *aux = lista.primero;
     for (int i = 1; i < p; i++)
         aux = aux->next;
@@ -67,7 +67,7 @@ tipoDato posicion(int p, Lista_cliente lista) {
 
 void imprime_lista(Lista_cliente lista) {
     for (int i = primero(lista); i < fin(lista); i = siguiente(i, lista)) {
-        tipoDato dato = posicion(i, lista);
+        datoUsuario dato = posicion(i, lista);
         cout <<"["<< i << "]"<< "-> "<< "nombre: " <<dato.nombre << " "<< "id: " << dato.id << "\n";
     }
     printf("\n");
