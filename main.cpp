@@ -10,20 +10,18 @@
  */
 
 //-------------------------------------------------------------------------------
-Lista clientes;
-Lista pelicula;
-Lista serie;
+Lista_cliente clientes;
+
 using namespace std;
 //-------------------------------------------------------------------------------
 
 
 int main() {
+    tipoDato cliente1;
+//-----------------------------------------------------------
+usuario(cliente1,1, clientes);
+    imprime_lista(clientes);
 
 //-----------------------------------------------------------
-    anula(clientes); //funcion que se encarga de eliminar los elementos de la lista
-    anula(pelicula);
-    anula(serie);
-//-----------------------------------------------------------
 
-    usuario();
 }

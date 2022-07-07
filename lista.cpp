@@ -8,26 +8,31 @@
 using namespace std;
 
 
-void usuario() {      //funcion para solicitar datos de clientes creados en un struct
-    struct usuario u;
+void usuario(tipoDato cliente, int posicion, Lista_cliente &usuario) {      //funcion para solicitar datos de clientes creados en un struct
     cout << "ingrese los datos de clientes \n";
-    cout << "ingrese su id:  ";
-    cin >> u.id;                //llenado de dato sin la necesidad de especificar formato
-    cout << "ingrese su nombre:  ";
-    cin >> u.nombre;
+    char nombre[20];
+    int id_number;
+    cout<< "nombre:";
+    cin>>nombre;
+    cout<< "id:  ";
+    cin>>id_number;
+    cliente.id=id_number;
+    strcpy(cliente.nombre,nombre);
+    ingresar(cliente,posicion,usuario);
+
 }
 
-bool vacia(Lista lista) {
+bool vacia(Lista_cliente lista) {
     return fin(lista) == primero(lista);
 }
 
-int primero(Lista lista) {
+int primero(Lista_cliente lista) {
     return 1;
 }
 
-int fin(Lista lista) {
+int fin(Lista_cliente lista) {
     int c = 1;
-    nodo *aux = lista.primero;
+    nodo1 *aux = lista.primero;
     while (aux != nullptr) {
         aux = aux->next;
         c++;
@@ -35,13 +40,13 @@ int fin(Lista lista) {
     return c;
 }
 
-int siguiente(int p, Lista lista) {
+int siguiente(int p, Lista_cliente lista) {
     return p + 1;
 }
 
-void ingresar(tipoDato x, int p, Lista &lista) {
-    nodo *nuevo = new nodo(x);
-    nodo *aux = lista.primero;
+void ingresar(tipoDato x, int p, Lista_cliente &lista) {
+    nodo1 *nuevo = new nodo1(x);
+    nodo1 *aux = lista.primero;
     if (primero(lista) == p) {
         nuevo->next = lista.primero;
         lista.primero = nuevo;
@@ -53,29 +58,32 @@ void ingresar(tipoDato x, int p, Lista &lista) {
     }
 }
 
-void imprime_lista(Lista lista) {
+tipoDato posicion(int p, Lista_cliente lista) {
+    nodo1 *aux = lista.primero;
+    for (int i = 1; i < p; i++)
+        aux = aux->next;
+    return aux->dato;
+}
+
+void imprime_lista(Lista_cliente lista) {
     for (int i = primero(lista); i < fin(lista); i = siguiente(i, lista)) {
-        cout << nombre.u << "\n";
+        tipoDato dato = posicion(i, lista);
+        cout <<"["<< i << "]"<< "-> "<< "nombre: " <<dato.nombre << " "<< "id: " << dato.id << "\n";
     }
     printf("\n");
 }
 
-void anula(Lista &lista) {
+void anula(Lista_cliente &lista) {
     while (!vacia(lista))
         suprime(primero(lista), lista);
 }
 
-int encontrar(const char *x, Lista lista) {
-
-}
-
-
-void suprime(int p, Lista &lista) {
-    nodo *aux = lista.primero;
+void suprime(int p, Lista_cliente &lista) {
+    nodo1 *aux = lista.primero;
     if (primero(lista) == p)
         lista.primero = aux->next;
     else {
-        nodo *aux2 = lista.primero;
+        nodo1 *aux2 = lista.primero;
         for (int i = 0; i < p - 2; i++)
             aux2 = aux2->next;
         aux = aux2->next;

@@ -1,7 +1,7 @@
 #ifndef LISTA_STRUCT_H
 #define LISTA_STRUCT_H
 
-#define tipoDato usuario
+#define tipoDato struct usuario
 /* Estructuras*/
 struct usuario {
     int id;
@@ -24,24 +24,24 @@ struct serie {
 };
  */
 //--------------------------------------------------------------------------------
-struct nodo {
+struct nodo1 {
     tipoDato dato;
-    struct nodo *next;
+    struct nodo1 *next;
 
-    nodo() {
+    nodo1() {
         next = nullptr;
     }
 
-    nodo(tipoDato x) {
-        nodo();
+    nodo1(tipoDato x) {
+        nodo1();
         dato = x;
     }
 };
 
-struct Lista {
-    struct nodo *primero;
+struct Lista_cliente {
+    struct nodo1 *primero;
 
-    Lista() {
+    Lista_cliente() {
         primero = nullptr;
     }
 };

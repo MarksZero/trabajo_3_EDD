@@ -4,23 +4,23 @@
 
 
 /* Prototipos */
-bool vacia(Lista lista);
+bool vacia(Lista_cliente lista);
 
-int primero(Lista lista);
+int primero(Lista_cliente lista);
 
-int fin(Lista lista);
+int fin(Lista_cliente lista);
 
-int siguiente(int p, Lista lista);
+void usuario(tipoDato cliente, int posicion, Lista_cliente &usuario);
 
-void ingresar(tipoDato x, int p, Lista &lista);
+int siguiente(int p, Lista_cliente lista);
 
-void imprime_lista(Lista lista);
+void ingresar(tipoDato x, int p, Lista_cliente &lista);
 
-int encontrar(const char *x, Lista lista);
+void imprime_lista(Lista_cliente lista);
 
-void suprime(int p, Lista &lista);
+void suprime(int p, Lista_cliente &lista);
 
-void anula(Lista &lista);
+void anula(Lista_cliente &lista);
 
 void usuario();
 //--------------------------------------
