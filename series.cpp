@@ -7,11 +7,11 @@
 using namespace std;
 
 
-void ingresar_serie(datoSerie seri, int posicion, Lista_series &serie, int reproducciones) {      //funcion para solicitar datos de clientes creados en un struct
+void ingresar_serie(datoSerie seri, int posicion, Lista_series &serie) {      //funcion para solicitar datos de clientes creados en un struct
     cout << "ingrese los datos de la pelicula \n";
     char titulo[30];
     cout << "titulo:";
-    cin >> titulo;
+    cin.getline(titulo,30,'\n');  //en vista que el cin solo corta la cadena al ver un espacio cambio a cin.getline
     int temporadas;
     cout << "temporadas:";
     cin >> temporadas;
@@ -20,10 +20,41 @@ void ingresar_serie(datoSerie seri, int posicion, Lista_series &serie, int repro
     cin >> capitulos;
     seri.temporadas = temporadas;
     seri.capitulos = capitulos;
-    seri.reproducciones = reproducciones;
+    seri.reproducciones = 0;
     strcpy(seri.titulo, titulo);
     ingresar(seri, posicion, serie);
 
+}
+
+
+void ingresar(datoSerie x, int p, Lista_series &lista) {
+    nodo3 *nuevo = new nodo3(x);
+    nodo3 *aux = lista.primero;
+    if (primero(lista) == p) {
+        nuevo->next = lista.primero;
+        lista.primero = nuevo;
+    } else {
+        for (int i = 0; i < p - 2; i++)
+            aux = aux->next;
+        nuevo->next = aux->next;
+        aux->next = nuevo;
+    }
+}
+
+datoSerie posicion(int p, Lista_series lista) {
+    nodo3 *aux = lista.primero;
+    for (int i = 1; i < p; i++)
+        aux = aux->next;
+    return aux->dato;
+}
+
+void imprime_serie(Lista_series lista) {
+    for (int i = primero(lista); i < fin(lista); i = siguiente(i, lista)) {
+        datoSerie dato = posicion(i, lista);
+        cout << "[" << i << "]" << "-> " << "titulo: " << dato.titulo << " temporadas: " << dato.temporadas <<
+                " capitulos: " << dato.capitulos << " numero de reproducciones: " << dato.reproducciones << "\n";
+    }
+    printf("\n");
 }
 
 int primero(Lista_series lista) {
@@ -48,35 +79,6 @@ int siguiente(int p, Lista_series lista) {
     return p + 1;
 }
 
-void ingresar(datoSerie x, int p, Lista_series &lista) {
-    nodo3 *nuevo = new nodo3(x);
-    nodo3 *aux = lista.primero;
-    if (primero(lista) == p) {
-        nuevo->next = lista.primero;
-        lista.primero = nuevo;
-    } else {
-        for (int i = 0; i < p - 2; i++)
-            aux = aux->next;
-        nuevo->next = aux->next;
-        aux->next = nuevo;
-    }
-}
-
-datoSerie posicion(int p, Lista_series lista) {
-    nodo3 *aux = lista.primero;
-    for (int i = 1; i < p; i++)
-        aux = aux->next;
-    return aux->dato;
-}
-
-void imprime_lista(Lista_series lista) {
-    for (int i = primero(lista); i < fin(lista); i = siguiente(i, lista)) {
-        datoSerie dato = posicion(i, lista);
-        cout << "[" << i << "]" << "-> " << "titulo: " << dato.titulo << " temporadas: " << dato.temporadas <<
-                "capitulos" << dato.capitulos << " numero de reproducciones: " << dato.reproducciones << "\n";
-    }
-    printf("\n");
-}
 
 void suprime(int p, Lista_series &lista) {
     nodo3 *aux = lista.primero;

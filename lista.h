@@ -16,7 +16,7 @@ int siguiente(int p, Lista_cliente lista);
 
 void ingresar(datoUsuario x, int p, Lista_cliente &lista);
 
-void imprime_lista(Lista_cliente lista);
+void imprime_usuario(Lista_cliente lista);
 
 void suprime(int p, Lista_cliente &lista);
 

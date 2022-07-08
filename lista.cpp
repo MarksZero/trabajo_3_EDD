@@ -1,9 +1,8 @@
 #include "lista.h"
 #include <cstdio>
 #include <iostream>
-#include <fstream>
 #include <vector>
-#include <string.h>
+#include <cstring>
 
 using namespace std;
 
@@ -13,7 +12,7 @@ void usuario(datoUsuario cliente, int posicion, Lista_cliente &usuario) {      /
     char nombre[20];
     int id_number;
     cout<< "nombre:";
-    cin>>nombre;
+    cin.getline(nombre,20,'\n');      //en vista que el cin solo corta la cadena al ver un espacio cambio a cin.getline
     cout<< "id:  ";
     cin>>id_number;
     cliente.id=id_number;
@@ -65,7 +64,7 @@ datoUsuario posicion(int p, Lista_cliente lista) {
     return aux->dato;
 }
 
-void imprime_lista(Lista_cliente lista) {
+void imprime_usuario(Lista_cliente lista) {
     for (int i = primero(lista); i < fin(lista); i = siguiente(i, lista)) {
         datoUsuario dato = posicion(i, lista);
         cout <<"["<< i << "]"<< "-> "<< "nombre: " <<dato.nombre << " "<< "id: " << dato.id << "\n";
