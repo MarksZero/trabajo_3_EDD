@@ -12,8 +12,9 @@ void usuario(datoUsuario cliente, int posicion, Lista_cliente &usuario) {      /
     char nombre[20];
     int id_number;
     cout<< "nombre:";
-    cin.getline(nombre,20,'\n');      //en vista que el cin solo corta la cadena al ver un espacio cambio a cin.getline
+    cin.getline(nombre,20,'\n');//en vista que el cin solo corta la cadena al ver un espacio cambio a cin.getline
     cout<< "id:  ";
+    cin.get();
     cin>>id_number;
     cliente.id=id_number;
     strcpy(cliente.nombre,nombre);
