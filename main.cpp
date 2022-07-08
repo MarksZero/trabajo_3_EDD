@@ -23,23 +23,31 @@ int main() {
          << "[4] salir" << '\n';
     int opcion;
     cin >> opcion;
+    cin.ignore();
 
-    switch (opcion) {
+while(opcion!=4) {
 
-        case 1:
-            usuario(cliente1, 1, clientes);
-            imprime_usuario(clientes);
-
-        case 2:
-            ingresar_peliculas(pelicula1, 1, peliculas);
-            imprime_pelicula(peliculas);
-
-        case 3:
-            ingresar_serie(serie1, 1, series);
-            imprime_serie(series);
-        case 4:
-            break;
+    if (opcion == 1) {
+        usuario(cliente1, 1, clientes);
+        imprime_usuario(clientes);
     }
+
+    if (opcion == 2) {
+        ingresar_peliculas(pelicula1, 1, peliculas);
+        imprime_pelicula(peliculas);
+    }
+    if (opcion == 3) {
+        ingresar_serie(serie1, 1, series);
+        imprime_serie(series);
+    } else {
+        cout << "ingrese su opcion: " << '\n';
+        cout << "[1] ingresar usuario" << '\n' << "[2]ingresar pelicula:" << '\n' << "[3] ingresar serie" << '\n'
+             << "[4] salir" << '\n';
+        cin >> opcion;
+    }
+    cin >> opcion;
+
+}
 
 
 //-----------------------------------------------------------

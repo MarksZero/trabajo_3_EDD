@@ -7,19 +7,16 @@
 using namespace std;
 
 
-void usuario(datoUsuario cliente, int posicion, Lista_cliente &usuario) {      //funcion para solicitar datos de clientes creados en un struct
+void usuario(datoUsuario cliente, int posicion,Lista_cliente &usuario) {//funcion para solicitar datos de clientes creados en un struct
     cout << "ingrese los datos de clientes \n";
     char nombre[20];
-    int id_number;
-    cout<< "nombre:";
-    cin.getline(nombre,20,'\n');//en vista que el cin solo corta la cadena al ver un espacio cambio a cin.getline
-    cout<< "id:  ";
-    cin.get();
-    cin>>id_number;
-    cliente.id=id_number;
-    strcpy(cliente.nombre,nombre);
-    ingresar(cliente,posicion,usuario);
-
+    int id_number = rand();
+    cout << "nombre:";
+    cin.getline(nombre,20);//en vista que el cin solo corta la cadena al ver un espacio cambio a cin.getline
+    cin.ignore();
+    cliente.id = id_number;
+    strcpy(cliente.nombre, nombre);
+    ingresar(cliente, posicion, usuario);
 }
 
 bool vacia(Lista_cliente lista) {
@@ -68,7 +65,7 @@ datoUsuario posicion(int p, Lista_cliente lista) {
 void imprime_usuario(Lista_cliente lista) {
     for (int i = primero(lista); i < fin(lista); i = siguiente(i, lista)) {
         datoUsuario dato = posicion(i, lista);
-        cout <<"["<< i << "]"<< "-> "<< "nombre: " <<dato.nombre << " "<< "id: " << dato.id << "\n";
+        cout << "[" << i << "]" << "-> " << "nombre: " << dato.nombre << " " << "id: " << dato.id << "\n";
     }
     printf("\n");
 }

@@ -11,18 +11,22 @@ void ingresar_serie(datoSerie seri, int posicion, Lista_series &serie) {      //
     cout << "ingrese los datos de la pelicula \n";
     char titulo[30];
     cout << "titulo:";
-    cin.getline(titulo,30,'\n');  //en vista que el cin solo corta la cadena al ver un espacio cambio a cin.getline
+    cin.getline(titulo,30);  //en vista que el cin solo corta la cadena al ver un espacio cambio a cin.getline
+    cin.ignore();
     int temporadas;
     cout << "temporadas:";
     cin >> temporadas;
+    cin.ignore();
     int capitulos;
     cout << "capitulos:";
     cin >> capitulos;
+    cin.ignore();
     seri.temporadas = temporadas;
     seri.capitulos = capitulos;
     seri.reproducciones = 0;
     strcpy(seri.titulo, titulo);
     ingresar(seri, posicion, serie);
+
 
 }
 

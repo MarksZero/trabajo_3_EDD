@@ -12,9 +12,11 @@ void ingresar_peliculas(datoPelicula movie, int posicion, Lista_peliculas &pelic
     char titulo[30];
     cout<< "titulo:";
     cin.getline(titulo,30,'\n');     //en vista que el cin solo corta la cadena al ver un espacio cambio a cin.getline
+    cin.ignore();
     movie.reproducciones= 0;
     strcpy(movie.titulo,titulo);
     ingresar(movie,posicion,pelicula);
+
 
 }
 
