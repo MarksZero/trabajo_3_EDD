@@ -20,5 +20,7 @@ void suprime(int p, Lista_peliculas &lista);
 
 void ingresar_peliculas(datoPelicula movie, int posicion, Lista_peliculas &pelicula);
 
+void prestar(int p, Lista_peliculas &lista);
+
 int fin(Lista_peliculas peliculas);
 

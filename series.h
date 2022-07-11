@@ -12,6 +12,10 @@ void ingresar(datoSerie x, int p, Lista_series &lista);
 
 datoSerie posicion(int p, Lista_series lista);
 
+void elimina(int p, Lista_series &lista);
+
+void prestar(int p, Lista_series &lista);
+
 void imprime_serie(Lista_series lista);
 
 void anula(Lista_series &lista);

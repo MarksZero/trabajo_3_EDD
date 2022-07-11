@@ -14,6 +14,7 @@ struct usuario {
 struct pelicula {
     char titulo[30];
     int reproducciones; //se añade para facilitar el numero de reproducciones que tenga, para evitar borarrla si tiene mas de 5
+    bool disponible; //para verificar si es posible prestar o no
     struct clientes *lista;
     struct pelicula *sgte;
 };
@@ -22,6 +23,7 @@ struct serie {
     int temporadas;
     int capitulos;
     int reproducciones; //se añade para facilitar el numero de reproducciones que tenga, para evitar borarrla si tiene mas de 5
+    bool disponible; //para verificar si es posible prestar o no
     struct clientes *lista;
     struct serie *sgte;
 };
