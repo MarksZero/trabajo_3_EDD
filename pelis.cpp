@@ -105,6 +105,8 @@ void suprime(int p, Lista_peliculas &lista) {
         }
         aux->next = nullptr;
         delete aux;
+    } else{
+        cout<<"no se pudo eliminar, mas de 5 reproduciones\n";
     }
 }
 

@@ -100,7 +100,7 @@ void elimina(int p, Lista_series &lista) {
         aux->next = nullptr;
         delete aux;
     } else{
-        cout<<"no se pudo eliminar\n";
+        cout<<"no se pudo eliminar, mas de 5 reproduciones\n";
     }
 }
 
