@@ -5,34 +5,40 @@
 #include <cstring>
 
 using namespace std;
+
 /*
 opciones:
-    -crear
-    -conseguir (suma reproducciones y cambia su estado)
+    -crear*
+    -reproducir*
+    -imprimir series*
+    -buscar series*
+    -eliminar*
 */
 
 void ingresar_serie(datoSerie seri, int posicion,
                     Lista_series &serie) {      //funcion para solicitar datos de clientes creados en un struct
     cout << "ingrese los datos de la pelicula \n";
-    char titulo[30];
+    char *titulo = new char[30];
     cout << "titulo:";
-    cin.getline(titulo, 30);  //en vista que el cin solo corta la cadena al ver un espacio cambio a cin.getline
     cin.ignore();
-    int temporadas;
+    cin.getline(titulo, 30);  //en vista que el cin solo corta la cadena al ver un espacio cambio a cin.getline
+    int *temporadas = new int;
     cout << "temporadas:";
-    cin >> temporadas;
-    int capitulos;
+    cin >> *temporadas;
+    int *capitulos = new int;
     cout << "capitulos:";
-    cin >> capitulos;
-    seri.temporadas = temporadas;
-    seri.capitulos = capitulos;
-    seri.reproducciones = 0;
-    strcpy(seri.titulo, titulo);
-    ingresar(seri, posicion, serie);
-
+    cin >> *capitulos;
+    if (comparar(titulo, serie)) {
+        seri.temporadas = *temporadas;
+        seri.capitulos = *capitulos;
+        seri.reproducciones = 0;
+        strcpy(seri.titulo, titulo);
+        ingresar(seri, posicion, serie);
+    } else {
+        cout << "ya existe\n";
+    }
 
 }
-
 
 void ingresar(datoSerie x, int p, Lista_series &lista) {
     nodo3 *nuevo = new nodo3(x);
@@ -48,40 +54,52 @@ void ingresar(datoSerie x, int p, Lista_series &lista) {
     }
 }
 
+void imprime_serie(Lista_series lista) {
+    cout << "--------------------SERIES------------------------------------\n";
+
+    for (int i = primero(lista); i < fin(lista); i = siguiente(i, lista)) {
+        datoSerie dato = posicion(i, lista);
+        cout << "[" << i << "]" << "-> " << "titulo: " << dato.titulo << " temporadas: " << dato.temporadas <<
+             " capitulos: " << dato.capitulos << " numero de reproducciones: "
+             << dato.reproducciones << "\n";
+    }
+    cout << "---------------------------------------------------------------\n";
+}
+
+void reproducir(int p, Lista_series &series) {
+    nodo3 *aux = series.primero;
+    for (int i = primero(series); i < fin(series); i = siguiente(i, series)) {
+        if (i == p) {
+            aux->dato.reproducciones++;
+        } else {
+            cout << "No se ha encontrado la serie.\n";
+        }
+    }
+}
+
+bool comparar(char nombre[30], Lista_series series) {
+    int num = buscar_nombre(nombre, series);
+    bool estado = true;
+    if (num != fin(series)) {
+        estado = false;
+    }
+    return estado;
+}
+
+int buscar_nombre(char nombre[30], Lista_series lista) {
+    for (int i = primero(lista); i < fin(lista); i = siguiente(i, lista)) {
+        if (strcmp(posicion(i, lista).titulo, nombre) == 0) {
+            return i;
+        }
+    }
+    return fin(lista);
+}
+
 datoSerie posicion(int p, Lista_series lista) {
     nodo3 *aux = lista.primero;
     for (int i = 1; i < p; i++)
         aux = aux->next;
     return aux->dato;
-}
-
-void imprime_serie(Lista_series lista) {
-    for (int i = primero(lista); i < fin(lista); i = siguiente(i, lista)) {
-        datoSerie dato = posicion(i, lista);
-        string estado;
-        if (dato.disponible) {
-            estado = "disponible";
-        } else { estado = "no disponible"; }
-        cout << "[" << i << "]" << "-> " << "titulo: " << dato.titulo << " temporadas: " << dato.temporadas <<
-             " capitulos: " << dato.capitulos << " estado: " << estado << " numero de reproducciones: "
-             << dato.reproducciones << "\n";
-    }
-    printf("\n");
-}
-
-
-
-void prestar(int p, Lista_series &lista){
-    nodo3 *aux=lista.primero;
-    for(int i=primero(lista);i<fin(lista);i=siguiente(i, lista)){
-        if(i==p && aux->dato.disponible){
-            aux->dato.reproducciones++;
-            aux->dato.disponible = false;
-        }
-        else{
-            cout<<"La serie que busca no existe o esta prestada.\n";
-        }
-    }
 }
 
 void elimina(int p, Lista_series &lista) {
@@ -99,8 +117,8 @@ void elimina(int p, Lista_series &lista) {
         }
         aux->next = nullptr;
         delete aux;
-    } else{
-        cout<<"no se pudo eliminar, mas de 5 reproduciones\n";
+    } else {
+        cout << "no se pudo eliminar, mas de 5 reproduciones\n";
     }
 }
 

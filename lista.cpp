@@ -3,35 +3,39 @@
 #include <iostream>
 #include <vector>
 #include <cstring>
-#include <algorithm>
 
 
 using namespace std;
 
+/*
+opciones:
+    -crear*
+    -imprimir usuarios*
+    -eliminar*
+*/
 
 void usuario(datoUsuario cliente, int posicion, int id, Lista_cliente &usuario) {//funcion para solicitar datos de clientes creados en un struct
     cout << "ingrese los datos de clientes \n";
-    char nombre[20];
-    cout << "nombre:";
-    cin.getline(nombre, 20);//en vista que el cin solo corta la cadena al ver un espacio cambio a cin.getline
+    char *nombre = new char[20];
+    cout << "nombre: ";
     cin.ignore();
+    cin.getline(nombre, 20);//en vista que el cin solo corta la cadena al ver un espacio cambio a cin.getline
     cliente.id = id;
     strcpy(cliente.nombre, nombre);
-    inserta(cliente,posicion, usuario);
+    inserta(cliente, posicion, usuario);
 }
 
-
-void inserta(datoUsuario x, int p, Lista_cliente &lista){
-    nodo1* nuevo= new nodo1(x);
-    nodo1* aux = lista.primero;
-    if(primero(lista)==p){
-        nuevo->next=lista.primero;
+void inserta(datoUsuario x, int p, Lista_cliente &lista) {
+    nodo1 *nuevo = new nodo1(x);
+    nodo1 *aux = lista.primero;
+    if (primero(lista) == p) {
+        nuevo->next = lista.primero;
         lista.primero = nuevo;
-    }else{
-        for(int i=0;i<p-2;i++)
-            aux=aux->next;
-        nuevo->next=aux->next;
-        aux->next=nuevo;
+    } else {
+        for (int i = 0; i < p - 2; i++)
+            aux = aux->next;
+        nuevo->next = aux->next;
+        aux->next = nuevo;
     }
 }
 
@@ -48,18 +52,6 @@ void imprime_usuario(Lista_cliente lista) {
         cout << "[" << i << "]" << "-> " << "nombre: " << dato.nombre << " " << "id: " << dato.id << "\n";
     }
     printf("\n");
-}
-
-void ordenar(Lista_cliente &lista) {
-    datoUsuario cliente_aux = posicion(1, lista);
-    int edadMenorCliente = cliente_aux.id;
-    // int menor = recupera(1, lista).edad;
-    for(int i = primero(lista) ; i < fin(lista) ; i = siguiente(i, lista)){
-        datoUsuario dato = posicion(i, lista);
-        if(dato.id < edadMenorCliente){
-            edadMenorCliente = dato.id;
-        }
-    }
 }
 
 void anula(Lista_cliente &lista) {
@@ -103,6 +95,29 @@ int fin(Lista_cliente lista) {
 int siguiente(int p, Lista_cliente lista) {
     return p + 1;
 }
+
+void menu_uno() {
+    cout << "ingrese su opcion: " << '\n';
+    cout << "[1] ingresar usuario" << '\n';
+    cout << "[2] Administrar contenido: " << '\n';
+    cout << "[3] Buscar y reproducir" << '\n';
+}
+
+void menu_dos() {
+    cout << "ingrese su opcion: " << '\n';
+    cout << "[1] Ingresar serie" << '\n';
+    cout << "[2] Eliminar serie: " << '\n';
+    cout << "[3] Ingresar pelicula" << '\n';
+    cout << "[4] Eliminar pelicula" << '\n';
+}
+
+void menu_tres(){
+    cout << "[1] Buscar serie" << '\n';
+    cout << "[2] Buscar pelicula" << '\n';
+
+}
+
+
 
 
 
