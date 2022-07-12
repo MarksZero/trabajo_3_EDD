@@ -29,3 +29,5 @@ int fin(Lista_series series);
 int buscar_nombre(char nombre[30], Lista_series lista);
 
 bool comparar(char nombre[30], Lista_series series);
+
+void imprime_nombre(int p, Lista_series lista);

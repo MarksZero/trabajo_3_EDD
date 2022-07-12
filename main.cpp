@@ -44,6 +44,7 @@ int main() {
                 ingresar_serie(serie1, pos_s, series);
                 pos_s++;
                 cout << "----------------------------------------\n";
+                continue;
 
             }
             if (*opcion == 2) {
@@ -51,17 +52,22 @@ int main() {
                 cout << "que serie desea eliminar?" << '\n';
                 cin >> *p;
                 elimina(*p, series);
+                continue;
+
             }
             if (*opcion == 3) {
                 ingresar_peliculas(pelicula1, pos_p, peliculas);
                 pos_p++;
                 cout << "----------------------------------------\n";
+                continue;
             }
             if (*opcion == 4) {
                 imprime_pelicula(peliculas);
                 cout << "que pelicula desea eliminar?" << '\n';
                 cin >> *p;
                 elimina(*p, peliculas);
+                continue;
+
             }
 
         }
@@ -77,6 +83,7 @@ int main() {
                     cout << "ingrese el numero de la serie: ";
                     cin >> *p;
                     reproducir(*p, series);
+                    imprime_nombre(*p,series);
                 } else continue;
             }
             if (*opcion == 2) {

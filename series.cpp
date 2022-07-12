@@ -1,5 +1,4 @@
 #include "series.h"
-#include <cstdio>
 #include <iostream>
 #include <vector>
 #include <cstring>
@@ -15,8 +14,7 @@ opciones:
     -eliminar*
 */
 
-void ingresar_serie(datoSerie seri, int posicion,
-                    Lista_series &serie) {      //funcion para solicitar datos de clientes creados en un struct
+void ingresar_serie(datoSerie seri, int posicion, Lista_series &serie) {      //funcion para solicitar datos de clientes creados en un struct
     cout << "ingrese los datos de la pelicula \n";
     char *titulo = new char[30];
     cout << "titulo:";
@@ -64,6 +62,12 @@ void imprime_serie(Lista_series lista) {
              << dato.reproducciones << "\n";
     }
     cout << "---------------------------------------------------------------\n";
+}
+
+void imprime_nombre(int p, Lista_series lista){
+    datoSerie dato = posicion(p, lista);
+    cout << "[" << p << "]" << "-> " << "titulo: " << dato.titulo << " " << "numero de reproducciones: "
+         << dato.reproducciones << "\n";
 }
 
 void reproducir(int p, Lista_series &series) {

@@ -1,5 +1,4 @@
 #include "pelis.h"
-#include <cstdio>
 #include <iostream>
 #include <vector>
 #include <cstring>
@@ -21,11 +20,13 @@ void ingresar_peliculas(datoPelicula movie, int posicion, Lista_peliculas &pelic
     cout << "titulo:";
     cin.ignore();
     cin.getline(titulo, 30, '\n');     //en vista que el cin solo corta la cadena al ver un espacio cambio a cin.getline
-    movie.reproducciones = 0;
-    strcpy(movie.titulo, titulo);
-    ingresar(movie, posicion, pelicula);
-
-
+    if (comparar(titulo, pelicula)) {
+        movie.reproducciones = 0;
+        strcpy(movie.titulo, titulo);
+        ingresar(movie, posicion, pelicula);
+    }else {
+        cout << "ya existe\n";
+    }
 }
 
 void ingresar(datoPelicula x, int p, Lista_peliculas &lista) {
